@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/manufacturers")
+@CrossOrigin(origins="http://localhost:3000")
 public class ManufacturerController {
     private final ManufacturerService manufacturerService;
 
@@ -26,12 +27,20 @@ public class ManufacturerController {
         return this.manufacturerService.findById(id);
     }
 
-    @PostMapping
+    /*@PostMapping
     public Manufacturer save(@RequestBody @Valid Manufacturer manufacturer){
+        return this.manufacturerService.save(manufacturer);
+    }*/
+
+    @PostMapping
+    public Manufacturer save(@RequestParam String name, @RequestParam String address){
+        Manufacturer manufacturer = new Manufacturer();
+        manufacturer.setName(name);
+        manufacturer.setAddress(address);
         return this.manufacturerService.save(manufacturer);
     }
 
-    @PatchMapping("/{id}") // ili @PutMapping? -> patch vo av
+    @PutMapping("/{id}") // ili @PutMapping? -> patch vo av
     public Manufacturer update(@PathVariable Long id, @RequestBody @Valid Manufacturer manufacturer){
         return this.manufacturerService.update(id,manufacturer);
     }
