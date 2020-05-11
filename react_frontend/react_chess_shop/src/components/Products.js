@@ -5,13 +5,14 @@ import {
     faEdit,
     faFastBackward,
     faFastForward,
-    faList,
+    faList, faPlusCircle,
     faStepBackward,
     faStepForward,
-    faTrash
+    faTrash, faUserPlus
 } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
 import MyToast from "./MyToast";
+import {Link} from "react-router-dom";
 
 export default class Products extends Component{
 
@@ -106,7 +107,11 @@ export default class Products extends Component{
                     <MyToast children = {{show:this.state.show, message:"Product Deleted Successfully.", type:"danger"}}/>
                 </div>
                 <Card className={"border border-dark bg-dark text-white"}>
-                    <Card.Header><FontAwesomeIcon icon={faList} /> Products List  </Card.Header>
+                    <Card.Header><FontAwesomeIcon icon={faList} /> Products List
+                        <div align="right">
+                            <Link to={"add-product"} className="btn btn-sm btn-outline-light" >Add New Product <FontAwesomeIcon icon={faPlusCircle}/></Link>
+                        </div>
+                    </Card.Header>
                     <Card.Body>
                         <Table bordered hover striped variant="dark">
                             <thead>

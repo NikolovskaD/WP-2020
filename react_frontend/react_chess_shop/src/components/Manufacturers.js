@@ -8,7 +8,7 @@ import {
     faList,
     faStepBackward,
     faStepForward,
-    faTrash
+    faTrash, faUserPlus
 } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
 import MyToast from "./MyToast";
@@ -108,7 +108,11 @@ export default class Manufacturers extends Component{
                     <MyToast show={this.state.show} message={"Manufacturer Deleted Successfully."} type={"danger"}/>
                 </div>
                 <Card className={"border border-dark bg-dark text-white"}>
-                    <Card.Header><FontAwesomeIcon icon={faList} /> Manufacturers List  </Card.Header>
+                    <Card.Header><FontAwesomeIcon icon={faList} /> Manufacturers List
+                        <div align="right">
+                            <Link to={"add-manufacturer"} className="btn btn-sm btn-outline-light" >Add New Manufacturer <FontAwesomeIcon icon={faUserPlus}/></Link>
+                        </div>
+                    </Card.Header>
                     <Card.Body>
                         <Table bordered hover striped variant="dark">
                             <thead>

@@ -1,7 +1,5 @@
 import React, {Component} from "react";
 import {Jumbotron} from "react-bootstrap";
-import {faChessKnight, faChessQueen} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
 export default class Play extends Component{
@@ -19,7 +17,10 @@ export default class Play extends Component{
                         <blockquote className="blockquote mb-0">
                             <p> Join the Online ChessBase Community </p>
                         </blockquote>
-                        <iframe src="https://liveblitz.chessbase.com" width="400" height="440"></iframe>
+                        <div className="bg-dark">
+                            <iframe src="https://play.chessbase.com" width="400" height="440" />
+                            <iframe src="https://liveblitz.chessbase.com" width="400" height="440" />
+                        </div>
                     </Jumbotron>
                 </div>
             </div>

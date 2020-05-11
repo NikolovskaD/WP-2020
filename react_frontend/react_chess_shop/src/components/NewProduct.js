@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Button, Card, Col, Form} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPlusSquare, faSave, faUndo} from '@fortawesome/free-solid-svg-icons'
+import {faList, faPlusSquare, faSave, faUndo} from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
 
 export default class NewProduct extends Component{
@@ -27,17 +27,21 @@ export default class NewProduct extends Component{
             photo: this.state.img,
             manufacturer: this.state.manufacturer
         };
-    }
+    };
 
     resetProduct = () => {
         this.setState(() => this.initialState);
-    }
+    };
 
     productChange = event =>{
         this.setState({
             [event.target.name]:event.target.value
         });
-    }
+    };
+
+    productsList = () => {
+        return this.props.history.push("/products");
+    };
 
     render() {
         const {name, price, quantity, img, manufacturer} = this.state;
@@ -85,6 +89,9 @@ export default class NewProduct extends Component{
                         </Form.Row>
                     </Card.Body>
                 <Card.Footer style={{"textAlign":"right"}}>
+                    <Button variant="info" size={"sm"} type="button" onClick={this.productsList.bind()}>
+                        <FontAwesomeIcon icon={faList} /> Products List
+                    </Button> {' '}
                     <Button variant="info" size={"sm"} type="reset">
                         <FontAwesomeIcon icon={faUndo} /> Reset
                     </Button> {' '}

@@ -11,13 +11,9 @@ export default  class NavigationBar extends Component{
                 <Link to={""} className="navbar-brand">
                     <FontAwesomeIcon icon={faChess} /> Chess Shop
                 </Link>
-
-                {/*<Navbar.Brand href="#home"><img src="kingLogo.png"/> Chess Shop </Navbar.Brand>*/}
                 <Nav className="mr-auto">
                     <Link to={"products"} className="nav-link">Products</Link>
-                    <Link to={"add-product"} className="nav-link">Add New Product</Link>
                     <Link to={"manufacturers"} className="nav-link">Manufacturers</Link>
-                    <Link to={"add-manufacturer"} className="nav-link">Add New Manufacturer</Link>
                     <Link to={"play"} className="nav-link">Play</Link>
                 </Nav>
                 <Form inline>
