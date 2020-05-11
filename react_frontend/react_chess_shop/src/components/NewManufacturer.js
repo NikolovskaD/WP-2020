@@ -4,6 +4,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit, faList, faPlusSquare, faSave, faUndo} from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
 import MyToast from "./MyToast";
+import qs from 'qs'
+
 
 export default class NewManufacturer extends Component{
 
@@ -73,7 +75,13 @@ export default class NewManufacturer extends Component{
                 'Content-Type': 'application/json'
             }
         })*/
-        axios.post("http://localhost:8080/api/manufacturers", man)
+        axios.post("http://localhost:8080/api/manufacturers/", man, {
+                headers: {
+                    /*'Content-Type': 'application/x-www-form-urlencoded'*/
+                    'Content-Type': ' application/json'
+                }
+            }
+        )
             .then(response => {
                 if (response.data != null){
                     this.setState({"show":true, "method":"post"});
@@ -106,7 +114,16 @@ export default class NewManufacturer extends Component{
             address: this.state.address
         };
 
-        axios.put("http://localhost:8080/api/manufacturers", man)
+        const stringyfied = JSON.stringify(man);
+        const proba2 = qs.stringify(man);
+
+
+        axios.put("http://localhost:8080/api/manufacturers/",  proba2, {
+            headers: {
+                /*'Content-Type': 'application/x-www-form-urlencoded'*/
+                'Content-Type': ' application/json'
+            }
+        })
             .then(response => {
                 if (response.data != null){
                     this.setState({"show":true, "method":"put"});

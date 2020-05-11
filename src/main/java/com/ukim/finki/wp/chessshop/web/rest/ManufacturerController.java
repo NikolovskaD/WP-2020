@@ -2,6 +2,7 @@ package com.ukim.finki.wp.chessshop.web.rest;
 
 import com.ukim.finki.wp.chessshop.model.Manufacturer;
 import com.ukim.finki.wp.chessshop.service.ManufacturerService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -33,6 +34,7 @@ public class ManufacturerController {
     }*/
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Manufacturer save(@RequestParam String name, @RequestParam String address){
         Manufacturer manufacturer = new Manufacturer();
         manufacturer.setName(name);
