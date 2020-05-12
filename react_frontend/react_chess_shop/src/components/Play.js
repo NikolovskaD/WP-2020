@@ -27,6 +27,3 @@ export default class Play extends Component{
         );
     }
 }
-
-
-/*“Chess is beautiful enough to waste your life for.” – Hans Ree*/

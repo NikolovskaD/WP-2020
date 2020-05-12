@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Jumbotron} from "react-bootstrap";
-import {faChessKnight, faChessQueen} from "@fortawesome/free-solid-svg-icons";
+import {faChessKnight} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
