@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Navbar, Nav, Form, FormControl, Button} from "react-bootstrap";
+import {Navbar, Nav} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {faChess} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -15,6 +15,7 @@ export default  class NavigationBar extends Component{
                     <Link to={"products"} className="nav-link">Products</Link>
                     <Link to={"manufacturers"} className="nav-link">Manufacturers</Link>
                     <Link to={"play"} className="nav-link">Play</Link>
+                    <Link to={"contact"} className="nav-link" align="right">Contact</Link>
                 </Nav>
                 {/*<Form inline>
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />

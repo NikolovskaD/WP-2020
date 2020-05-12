@@ -14,6 +14,7 @@ import ManufacturerAdd from "./components/Manufacturer/ManufacturerAdd";
 import Play from "./components/Play";
 import ProductsListForUsers from "./components/Product/ProductsListForUsers";
 import ManufacturerEdit from "./components/Manufacturer/ManufacturerEdit";
+import Contact from "./components/Contact";
 
 
 function App() {
@@ -35,7 +36,8 @@ function App() {
                 <Route path="/manufacturers" exact component={ManufacturersList}/>
                 <Route path="/add-manufacturer" exact component={ManufacturerAdd}/>
                 <Route path="/play" exact component={Play}/>
-                  <Route path="/edit/:id" exact component={ManufacturerEdit}/>
+                <Route path="/edit/:id" exact component={ManufacturerEdit}/>
+                <Route path="/contact" exact component={Contact}/>
               </Switch>
             </Col>
           </Row>
