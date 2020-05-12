@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/manufacturers")
-@CrossOrigin(origins="http://localhost:3000")
+@CrossOrigin(origins={"http://localhost:3000", "https://cors-anywhere.herokuapp.com/"})
 public class ManufacturerController {
     private final ManufacturerService manufacturerService;
 
@@ -43,7 +43,7 @@ public class ManufacturerController {
         return this.manufacturerService.save(manufacturer);
     }*/
 
-    @PutMapping("/{id}") // ili @PutMapping? -> patch vo av
+    @PutMapping("/{id}")
     public Manufacturer update(@PathVariable Long id, @RequestBody @Valid Manufacturer manufacturer){
         return this.manufacturerService.update(id,manufacturer);
     }

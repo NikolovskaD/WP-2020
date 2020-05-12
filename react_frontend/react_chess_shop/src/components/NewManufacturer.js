@@ -42,7 +42,7 @@ export default class NewManufacturer extends Component{
         });
     };
 
-    /*submitManufacturer = event => {
+    submitManufacturer = event => {
         event.preventDefault();
 
         const man = {
@@ -50,11 +50,11 @@ export default class NewManufacturer extends Component{
             address: this.state.address
         };
 
-        /!*var params = new URLSearchParams();
+        /*var params = new URLSearchParams();
         params.append('name', this.state.name);
-        params.append('address', this.state.address);*!/
+        params.append('address', this.state.address);*/
 
-        /!*axios({
+        /*axios({
             method: 'post',
             url: "http://localhost:8080/api/manufacturers",
             headers: {},
@@ -68,20 +68,24 @@ export default class NewManufacturer extends Component{
                     this.setState(this.initialState);
                     alert("Manufacturer saved successfully!");
                 }
-            });*!/
+            });*/
 
-        /!*axios.post("http://localhost:8080/api/manufacturers", man, {
+        /*axios.post("http://localhost:8080/api/manufacturers", man, {
             headers: {
                 'Content-Type': 'application/json'
             }
-        })*!/
-        axios.post("http://localhost:8080/api/manufacturers/", man, {
-                headers: {
-                    /!*'Content-Type': 'application/x-www-form-urlencoded'*!/
-                    'Content-Type': ' application/json'
-                }
+        })*/
+        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+        const url = "http://localhost:8080/api/manufacturers";
+
+        axios.post( url,  {
+            "name": this.state.name,
+            "address": this.state.address
+        }, {
+            headers: {
+                'Content-Type': ' application/json'
             }
-        )
+        })
             .then(response => {
                 if (response.data != null){
                     this.setState({"show":true, "method":"post"});
@@ -89,13 +93,13 @@ export default class NewManufacturer extends Component{
                 } else {
                     this.setState({"show":false});
                 }
-            });
+            }).catch((error) => console.log( error.response.request._response ) );
 
         this.setState(this.initialState);
 
-    };*/
+    };
 
-    submitManufacturer = event => {
+    /*submitManufacturer = event => {
         event.preventDefault();
 
         const manufacturer = {
@@ -104,17 +108,17 @@ export default class NewManufacturer extends Component{
         };
 
         const headers = new Headers();
-        /*headers.append('Content-Type','application/json');*/
+        /!*headers.append('Content-Type','application/json');*!/
         headers.append('Content-Type','application/x-www-form-urlencoded');
 
         fetch("http://localhost:8080/api/manufacturers",  {
                 method: 'POST',
                 body: JSON.stringify(manufacturer),
                 headers
-                /*headers: {
+                /!*headers: {
                     /!*'Content-Type': 'application/x-www-form-urlencoded'*!/
                     'Content-Type': ' application/json'
-                }*/
+                }*!/
 
         })
             .then(resp => resp.json())
@@ -129,7 +133,7 @@ export default class NewManufacturer extends Component{
 
         this.setState(this.initialState);
 
-    };
+    };*/
 
     resetManufacturer = () => {
         this.setState(() => this.initialState);
@@ -150,13 +154,14 @@ export default class NewManufacturer extends Component{
             address: this.state.address
         };
 
-        const stringyfied = JSON.stringify(man);
-        const proba2 = qs.stringify(man);
+        const url = "http://localhost:8080/api/manufacturers/";
 
 
-        axios.put("http://localhost:8080/api/manufacturers/",  proba2, {
+        axios.put( url + man.id,  {
+            "name": this.state.name,
+            "address": this.state.address
+        }, {
             headers: {
-                /*'Content-Type': 'application/x-www-form-urlencoded'*/
                 'Content-Type': ' application/json'
             }
         })
@@ -168,7 +173,8 @@ export default class NewManufacturer extends Component{
                 } else {
                     this.setState({"show":false});
                 }
-            });
+            }).catch((error) => console.log( error.response.request._response ) );
+
 
         this.setState(this.initialState);
     };

@@ -6,11 +6,11 @@ export default class Footer extends Component {
         let fullYear = new Date().getFullYear();
 
         return (
-            <Navbar fixed="bottom" bg="dark" variant="dark">
-                <Container>
-                    <Row>
-                        <Col lg={12} className="text-muted text-center" >
-                            <div>{fullYear}, All Rights Reserved by FINKI</div>
+            <Navbar fixed="bottom" bg="dark" variant="dark" align="center">
+                <Container lg={12} align="center">
+                    <Row align="center">
+                        <Col  className="text-muted text-center" align="center">
+                            <div align="center"> All Rights Reserved by FINKI {fullYear-1}-{fullYear}</div>
                         </Col>
                     </Row>
                 </Container>
