@@ -1,4 +1,3 @@
-/*
 package com.ukim.finki.wp.chessshop.service.impl;
 
 import com.ukim.finki.wp.chessshop.model.Product;
@@ -116,4 +115,3 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         return this.shoppingCartRepository.save(shoppingCart);
     }
 }
-*/

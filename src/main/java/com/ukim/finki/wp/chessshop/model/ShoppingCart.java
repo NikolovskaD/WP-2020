@@ -1,4 +1,3 @@
-/*
 package com.ukim.finki.wp.chessshop.model;
 
 import com.ukim.finki.wp.chessshop.model.enumeration.CartStatus;
@@ -37,4 +36,3 @@ public class ShoppingCart {
 
     //private List<CartItem> cartItems;
 }
-*/

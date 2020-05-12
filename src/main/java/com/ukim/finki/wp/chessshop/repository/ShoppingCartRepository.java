@@ -1,4 +1,3 @@
-/*
 package com.ukim.finki.wp.chessshop.repository;
 
 import com.ukim.finki.wp.chessshop.model.ShoppingCart;
@@ -16,4 +15,3 @@ public interface ShoppingCartRepository extends JpaRepository<ShoppingCart,Long>
     //moze istoto i so
     //boolean existsByUserAndUsernameAndStatus(String username, CartStatus cartStatus);
 }
-*/

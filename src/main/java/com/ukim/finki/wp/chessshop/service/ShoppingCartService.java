@@ -1,4 +1,3 @@
-/*
 package com.ukim.finki.wp.chessshop.service;
 
 import com.ukim.finki.wp.chessshop.model.ShoppingCart;
@@ -10,4 +9,3 @@ public interface ShoppingCartService {
     ShoppingCart cancelActiveShoppingCart(String userId);
     ShoppingCart checkoutShoppingCart(String userId);
 }
-*/
