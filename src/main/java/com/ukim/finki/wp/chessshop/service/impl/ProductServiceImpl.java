@@ -45,35 +45,22 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product saveProduct(Product product, MultipartFile image) throws IOException {
-        Manufacturer manufacturer = this.manufacturerService.findById(product.getManufacturer().getId());
-        product.setManufacturer(manufacturer);
-
-        if (image != null){
-            byte[] imageBytes = image.getBytes();
-            String base64Img = String.format("data:%s;base64,%s", image.getContentType(), Base64.getEncoder().encodeToString(imageBytes));
-            product.setBase64Image(base64Img);
-        }
-
+    public Product saveProduct(Product product)  {
         return this.productRepository.save(product);
     }
 
     @Override
-    public Product update(Long id, Product product, MultipartFile image) throws IOException {
+    public Product update(Long id, Product product) {
         Product updatedProduct = this.findById(id);
         Manufacturer manufacturer = this.manufacturerService.findById(product.getManufacturer().getId());
         updatedProduct.setManufacturer(manufacturer);
         updatedProduct.setName(product.getName());
         updatedProduct.setPrice(product.getPrice());
         updatedProduct.setQuantity(product.getQuantity());
+        updatedProduct.setDescription(product.getDescription());
+        updatedProduct.setImgUrl(product.getImgUrl());
 
-        if (image != null){
-            byte[] imageBytes = image.getBytes();
-            String base64Img = String.format("data:%s;base64,%s", image.getContentType(), Base64.getEncoder().encodeToString(imageBytes));
-            updatedProduct.setBase64Image(base64Img);
-        }
-
-        return this.productRepository.save(updatedProduct);
+        return this.productRepository.save(product);
     }
 
     @Override

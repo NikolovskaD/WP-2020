@@ -28,19 +28,20 @@ public class ManufacturerController {
         return this.manufacturerService.findById(id);
     }
 
-    /*@PostMapping
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Manufacturer save(@RequestBody @Valid Manufacturer manufacturer){
         return this.manufacturerService.save(manufacturer);
-    }*/
+    }
 
-    @PostMapping
+    /*@PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Manufacturer save(@RequestParam String name, @RequestParam String address){
         Manufacturer manufacturer = new Manufacturer();
         manufacturer.setName(name);
         manufacturer.setAddress(address);
         return this.manufacturerService.save(manufacturer);
-    }
+    }*/
 
     @PutMapping("/{id}") // ili @PutMapping? -> patch vo av
     public Manufacturer update(@PathVariable Long id, @RequestBody @Valid Manufacturer manufacturer){

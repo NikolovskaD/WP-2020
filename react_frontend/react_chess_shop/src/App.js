@@ -12,6 +12,7 @@ import NewProduct from "./components/NewProduct";
 import Manufacturers from "./components/Manufacturers";
 import NewManufacturer from "./components/NewManufacturer";
 import Play from "./components/Play";
+import ProductsListForUsers from "./components/ProductsListForUsers";
 
 
 function App() {
@@ -27,7 +28,8 @@ function App() {
             <Col lg={12} style={marginTop}>
               <Switch>
                 <Route path="/" exact component={Welcome}/>
-                <Route path="/products" exact component={Products}/>
+                {/*<Route path="/products" exact component={Products}/>*/}
+                <Route path="/products" exact component={ProductsListForUsers}/>
                 <Route path="/add-product" exact component={NewProduct}/>
                 <Route path="/manufacturers" exact component={Manufacturers}/>
                 <Route path="/edit/:id" exact component={NewManufacturer}/>
@@ -36,7 +38,7 @@ function App() {
               </Switch>
             </Col>
           </Row>
-        </Container>
+        </Container><br/><br/>
         <Footer/>
       </Router>
   );

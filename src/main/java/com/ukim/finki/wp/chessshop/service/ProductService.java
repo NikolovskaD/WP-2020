@@ -12,8 +12,7 @@ public interface ProductService {
     List<Product> findAll();
     List<Product> findAllByManufacturerId(Long manufacturerId);
     Product findById(Long id);
-    Product saveProduct(Product product, MultipartFile image) throws IOException;
-    //Product saveProduct(String name, Float price,Integer quantity);        //vtor nacin
-    Product update(Long id, Product product, MultipartFile image) throws IOException;
+    Product saveProduct(Product product);
+    Product update(Long id, Product product);
     void deleteById(Long id);
 }

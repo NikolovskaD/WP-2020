@@ -42,7 +42,7 @@ export default class NewManufacturer extends Component{
         });
     };
 
-    submitManufacturer = event => {
+    /*submitManufacturer = event => {
         event.preventDefault();
 
         const man = {
@@ -50,11 +50,11 @@ export default class NewManufacturer extends Component{
             address: this.state.address
         };
 
-        /*var params = new URLSearchParams();
+        /!*var params = new URLSearchParams();
         params.append('name', this.state.name);
-        params.append('address', this.state.address);*/
+        params.append('address', this.state.address);*!/
 
-        /*axios({
+        /!*axios({
             method: 'post',
             url: "http://localhost:8080/api/manufacturers",
             headers: {},
@@ -68,22 +68,58 @@ export default class NewManufacturer extends Component{
                     this.setState(this.initialState);
                     alert("Manufacturer saved successfully!");
                 }
-            });*/
+            });*!/
 
-        /*axios.post("http://localhost:8080/api/manufacturers", man, {
+        /!*axios.post("http://localhost:8080/api/manufacturers", man, {
             headers: {
                 'Content-Type': 'application/json'
             }
-        })*/
+        })*!/
         axios.post("http://localhost:8080/api/manufacturers/", man, {
                 headers: {
-                    /*'Content-Type': 'application/x-www-form-urlencoded'*/
+                    /!*'Content-Type': 'application/x-www-form-urlencoded'*!/
                     'Content-Type': ' application/json'
                 }
             }
         )
             .then(response => {
                 if (response.data != null){
+                    this.setState({"show":true, "method":"post"});
+                    setTimeout(() => this.setState({"show":false}), 3000);
+                } else {
+                    this.setState({"show":false});
+                }
+            });
+
+        this.setState(this.initialState);
+
+    };*/
+
+    submitManufacturer = event => {
+        event.preventDefault();
+
+        const manufacturer = {
+            name: this.state.name,
+            address: this.state.address
+        };
+
+        const headers = new Headers();
+        /*headers.append('Content-Type','application/json');*/
+        headers.append('Content-Type','application/x-www-form-urlencoded');
+
+        fetch("http://localhost:8080/api/manufacturers",  {
+                method: 'POST',
+                body: JSON.stringify(manufacturer),
+                headers
+                /*headers: {
+                    /!*'Content-Type': 'application/x-www-form-urlencoded'*!/
+                    'Content-Type': ' application/json'
+                }*/
+
+        })
+            .then(resp => resp.json())
+            .then((manufacturer) => {
+                if (manufacturer != null){
                     this.setState({"show":true, "method":"post"});
                     setTimeout(() => this.setState({"show":false}), 3000);
                 } else {

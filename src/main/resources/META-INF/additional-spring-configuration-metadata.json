@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.social.facebook.appId",
+      "type": "java.lang.String",
+      "description": "Description for spring.social.facebook.appId."
+  }
+] }

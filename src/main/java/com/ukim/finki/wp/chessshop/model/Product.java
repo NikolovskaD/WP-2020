@@ -22,13 +22,17 @@ public class Product {
     @NotNull
     private String name;
 
+    private String description;
+
     private Float price;
 
     private Integer quantity;
 
-    @Lob //large obj, vo baza e kako varchar(255)
+    /*@Lob //large obj, vo baza e kako varchar(255)
     @Column(name = "image")
-    private String base64Image;
+    private String base64Image;*/
+
+    private String imgUrl;
 
     @ManyToOne
     @NonNull

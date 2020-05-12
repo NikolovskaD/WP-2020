@@ -1,3 +1,4 @@
+/*
 package com.ukim.finki.wp.chessshop.service.impl;
 
 import com.ukim.finki.wp.chessshop.model.User;
@@ -29,3 +30,4 @@ public class AuthServiceImpl implements AuthService {
         return this.getCurrentUser().getUsername();
     }
 }
+*/

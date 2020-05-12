@@ -1,16 +1,14 @@
 package com.ukim.finki.wp.chessshop.web.rest;
 
-import com.ukim.finki.wp.chessshop.model.Manufacturer;
+
 import com.ukim.finki.wp.chessshop.model.Product;
 import com.ukim.finki.wp.chessshop.service.ManufacturerService;
 import com.ukim.finki.wp.chessshop.service.ProductService;
+import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -39,14 +37,14 @@ public class ProductController {
     }
 
     @PostMapping
-    public Product save(@RequestBody @Valid Product product,@RequestParam(required = false) MultipartFile image) throws IOException {
-        return this.productService.saveProduct(product,image);
+    @ResponseStatus(HttpStatus.CREATED)
+    public Product save(@RequestBody @Valid Product product) {
+        return this.productService.saveProduct(product);
     }
 
-    @PutMapping("/{id}")
-    public Product update(@PathVariable Long id, @RequestBody @Valid Product product,
-                          @RequestParam(required = false) MultipartFile image) throws IOException {
-        return this.productService.update(id, product, image);
+    @PatchMapping("/{id}")
+    public Product update(@PathVariable Long id, @RequestBody @Valid Product product) {
+        return this.productService.update(id, product);
     }
 
     @DeleteMapping("/{id}")

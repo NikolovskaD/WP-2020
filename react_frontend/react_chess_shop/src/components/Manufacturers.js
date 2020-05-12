@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Button, ButtonGroup, Card, FormControl, InputGroup, Table} from "react-bootstrap";
+import {Button, ButtonGroup, Card, CardDeck, FormControl, InputGroup, Table} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faEdit,
@@ -177,7 +177,6 @@ export default class Manufacturers extends Component{
                     </Card.Footer>
                 </Card>
             </div>
-
         );
     }
 }
