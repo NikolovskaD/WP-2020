@@ -1,5 +1,6 @@
 package com.ukim.finki.wp.chessshop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.NonNull;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -38,4 +40,9 @@ public class Product {
     @NonNull
     //@JoinColumn(name = "man_id")  za menuvanje na imeto na kolonata
     private Manufacturer manufacturer;
+
+    /*@JsonIgnore
+    @ManyToMany(mappedBy = "products")
+    private List<ShoppingCart> shoppingCarts;*/
+
 }

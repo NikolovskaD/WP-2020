@@ -11,7 +11,7 @@ import {
     faTrash, faUserPlus
 } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
-import MyToast from "./MyToast";
+import MyToast from "../MyToast";
 import {Link} from "react-router-dom";
 
 export default class Products extends Component{

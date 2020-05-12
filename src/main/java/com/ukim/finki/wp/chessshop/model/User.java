@@ -1,32 +1,35 @@
-/*
 package com.ukim.finki.wp.chessshop.model;
 
-import java.util.Set;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
+import com.ukim.finki.wp.chessshop.model.enumeration.UserRole;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.data.jpa.domain.AbstractPersistable;
+import lombok.NoArgsConstructor;
 
+
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Entity
-public class User extends AbstractPersistable<Long> {
-    private static final long serialVersionUID = -7302800336276816169L;
-    private String userId;
-    private String userName;
+public class User {
+
+    //private String userId;
+
+    @Id
+    @NotNull
+    @Column(length = 30)
+    private String username;
+
+
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Role role;
 
-    @OneToMany(targetEntity = Address.class, mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Address> addresses;
+    private String email;
+
+    @Enumerated(EnumType.STRING) // za da se socuva vo bazata kako String
+    private UserRole userRole = UserRole.UNDEFINED;
+
 
 }
-*/

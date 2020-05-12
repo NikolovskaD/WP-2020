@@ -1,12 +1,10 @@
-/*
 package com.ukim.finki.wp.chessshop.service.impl;
 
 import com.ukim.finki.wp.chessshop.model.User;
-import com.ukim.finki.wp.chessshop.model.exceptions.UserNotFoundException;
 import com.ukim.finki.wp.chessshop.repository.UserRepository;
 import com.ukim.finki.wp.chessshop.service.UserService;
 import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
+
 
 
 import java.util.List;
@@ -15,31 +13,18 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
-    @Autowired
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    */
-/*@Override
-    public User findById(String username) {
-        return this.userRepository.findById(username).orElseThrow(() -> new UserNotFoundException(username));
-    }*//*
-
-
     @Override
     public User findById(String username) {
-        return null;
+        return this.userRepository.findByUsername(username);
     }
 
     @Override
-    public List<User> userList() {
+    public List<User> findAll() {
         return userRepository.findAll();
-    }
-
-    @Override
-    public User findOne(Long id) {
-        return userRepository.findOne(id);
     }
 
     @Override
@@ -48,9 +33,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String deleteUser(Long id) {
-        userRepository.delete(id);
-        return "{'message':'User deleted successfully.'}";
+    public void deleteUser(String username) {
+        User user = this.userRepository.findByUsername(username);
+        userRepository.delete(user);
     }
 }
-*/

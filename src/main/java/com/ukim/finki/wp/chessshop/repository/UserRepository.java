@@ -1,4 +1,3 @@
-/*
 package com.ukim.finki.wp.chessshop.repository;
 
 import com.ukim.finki.wp.chessshop.model.User;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
-    @Query("FROM User WHERE userName=:username")
+    @Query("FROM User WHERE username=:username")
     User findByUsername(@Param("username") String username);
 }
-*/

@@ -11,10 +11,10 @@ import {
     faTrash, faUserPlus
 } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
-import MyToast from "./MyToast";
+import MyToast from "../MyToast";
 import {Link} from "react-router-dom";
 
-export default class Manufacturers extends Component{
+export default class ManufacturersList extends Component{
 
     constructor(props) {
         super(props);

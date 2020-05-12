@@ -33,7 +33,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     public ShoppingCart createShoppingCart(String userId) {
         User user = this.userService.findById(userId);
-        if (this.shoppingCartRepository.existsByUserAndUsernameAndStatus(userId, CartStatus.CREATED)){
+        if (this.shoppingCartRepository.findByUserUsernameAndCartStatus(userId, CartStatus.CREATED ) != null){
             throw new ActiveShoppingCartAlreadyExists();
         }
         ShoppingCart shoppingCart = new ShoppingCart();
@@ -41,6 +41,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         return this.shoppingCartRepository.save(shoppingCart);
     }
 
+    @Transactional
     @Override
     public ShoppingCart addProductToShoppingCart(String userId, Long productId) {
         ShoppingCart shoppingCart = this.getActiveShoppingCartOrCreateNew(userId);
@@ -53,12 +54,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         }
         products.add(product);
 
-//        shoppingCart.setProducts(products);
+        shoppingCart.setProducts(products);
         return this.shoppingCartRepository.save(shoppingCart);
     }
 
     private ShoppingCart getActiveShoppingCartOrCreateNew(String userId){
-        ShoppingCart shoppingCart = this.shoppingCartRepository.findByUserAndUsernameAndStatus(userId,CartStatus.CREATED);
+        ShoppingCart shoppingCart = this.shoppingCartRepository.findByUserUsernameAndCartStatus(userId,CartStatus.CREATED);
         if (shoppingCart == null){
             shoppingCart = new ShoppingCart();
             shoppingCart.setUser(this.userService.findById(userId));
@@ -67,6 +68,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         return shoppingCart;
     }
 
+    @Transactional
     @Override
     public ShoppingCart removeProductFromShoppingCart(String userId, Long productId) {
         ShoppingCart shoppingCart = this.getActiveShoppingCartOrCreateNew(userId);
@@ -82,7 +84,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public ShoppingCart cancelActiveShoppingCart(String userId) {
-        ShoppingCart shoppingCart = this.shoppingCartRepository.findByUserAndUsernameAndStatus(userId,CartStatus.CREATED);
+        ShoppingCart shoppingCart = this.shoppingCartRepository.findByUserUsernameAndCartStatus(userId,CartStatus.CREATED);
         if (shoppingCart == null)
             throw new ShoppingCartIsNotActiveException();
         shoppingCart.setCartStatus(CartStatus.CANCELED);
@@ -93,7 +95,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Transactional   // menuvame poveke raboti, sakame da se smeni vo bazata samo ako pomine se kako treba
                      // ako se desi bilo kade da padne, nema nikakva promena da bide socuvana
     public ShoppingCart checkoutShoppingCart(String userId) {
-        ShoppingCart shoppingCart = this.shoppingCartRepository.findByUserAndUsernameAndStatus(userId,CartStatus.CREATED);
+        ShoppingCart shoppingCart = this.shoppingCartRepository.findByUserUsernameAndCartStatus(userId,CartStatus.CREATED);
         if (shoppingCart == null)
             throw new ShoppingCartIsNotActiveException();
 

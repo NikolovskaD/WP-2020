@@ -16,10 +16,10 @@ export default  class NavigationBar extends Component{
                     <Link to={"manufacturers"} className="nav-link">Manufacturers</Link>
                     <Link to={"play"} className="nav-link">Play</Link>
                 </Nav>
-                <Form inline>
+                {/*<Form inline>
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                     <Button variant="outline-light">Search</Button>
-                </Form>
+                </Form>*/}
             </Navbar>
         );
     }

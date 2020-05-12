@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "shopping_carts")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,13 +27,13 @@ public class ShoppingCart {
     private CartStatus cartStatus = CartStatus.CREATED;
 
     @ManyToOne
-    @JoinColumn(name = "user_id") //go menuvame imeto na nadvoresniot kluc vo users tabelata
+    //@JoinColumn(name = "user_id") //go menuvame imeto na nadvoresniot kluc vo users tabelata
     private User user;
 
     @ManyToMany
     @JoinTable(name = "cart_products", joinColumns = @JoinColumn(name = "cart_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))   //table posto e ManyToMany
-    private List<Product> products;
+    private List<Product> products = new ArrayList<>();
 
     //private List<CartItem> cartItems;
 }

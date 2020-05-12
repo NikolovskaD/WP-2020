@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/manufacturers")
-@CrossOrigin(origins={"http://localhost:3000", "https://cors-anywhere.herokuapp.com/"})
+@CrossOrigin(origins = "http://localhost:3000")
 public class ManufacturerController {
     private final ManufacturerService manufacturerService;
 

@@ -1,13 +1,13 @@
 import React, {Component} from "react";
 import {Button, Card, Col, Form} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEdit, faList, faPlusSquare, faSave, faUndo} from '@fortawesome/free-solid-svg-icons'
+import {faList, faPlusSquare, faSave, faUndo} from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
-import MyToast from "./MyToast";
+import MyToast from "../MyToast";
 import qs from 'qs'
 
 
-export default class NewManufacturer extends Component{
+export default class ManufacturerAdd extends Component{
 
     constructor(props){
         super(props);
@@ -145,40 +145,6 @@ export default class NewManufacturer extends Component{
         });
     };
 
-    updateManufacturer = event => {
-        event.preventDefault();
-
-        const man = {
-            id: this.state.id,
-            name: this.state.name,
-            address: this.state.address
-        };
-
-        const url = "http://localhost:8080/api/manufacturers/";
-
-
-        axios.put( url + man.id,  {
-            "name": this.state.name,
-            "address": this.state.address
-        }, {
-            headers: {
-                'Content-Type': ' application/json'
-            }
-        })
-            .then(response => {
-                if (response.data != null){
-                    this.setState({"show":true, "method":"put"});
-                    setTimeout(() => this.setState({"show":false}), 3000);
-                    setTimeout(() => this.manufacturerList(), 3000);
-                } else {
-                    this.setState({"show":false});
-                }
-            }).catch((error) => console.log( error.response.request._response ) );
-
-
-        this.setState(this.initialState);
-    };
-
     manufacturerList = () => {
         return this.props.history.push("/manufacturers");
     };
@@ -189,11 +155,11 @@ export default class NewManufacturer extends Component{
         return (
             <div>
                 <div style={{"display":this.state.show ? "block" : "none"}}>
-                    <MyToast show = {this.state.show} message={this.state.method === "put" ? "Manufacturer Updated Successfully." : "Manufacturer Saved Successfully."} type={"success"}/>
+                    <MyToast show = {this.state.show} message="Manufacturer Saved Successfully." type={"success"}/>
                 </div>
                 <Card className={"border border-dark bg-dark text-white"}>
-                    <Card.Header><FontAwesomeIcon icon={this.state.id ? faEdit : faPlusSquare}/> {this.state.id ? "Update Manufacturer" : "Add New Manufacturer"} </Card.Header>
-                    <Form onReset={this.resetManufacturer} onSubmit={this.state.id ? this.updateManufacturer : this.submitManufacturer}  id="manufacturersFormId">
+                    <Card.Header><FontAwesomeIcon icon={faPlusSquare}/> Add New Manufacturer </Card.Header>
+                    <Form onSubmit={this.submitManufacturer} onReset={this.resetManufacturer} id="manufacturersFormId">
                         <Card.Body>
                             <Form.Row>
                                 <Form.Group as={Col} controlId="formGridName">
@@ -217,15 +183,13 @@ export default class NewManufacturer extends Component{
                             <Button variant="info" size={"sm"} type="reset">
                                 <FontAwesomeIcon icon={faUndo} /> Reset
                             </Button>  {' '}
-                            <Button variant="success" size={"sm"} type="submit">
-                                <FontAwesomeIcon icon={faSave} /> {this.state.id ? "Update" : "Save"}
+                            <Button variant="success" size={"sm"} type="submit" onClick={this.submitManufacturer}>
+                                <FontAwesomeIcon icon={faSave} /> Save
                             </Button>
                         </Card.Footer>
                     </Form>
                 </Card>
             </div>
-
-
         );
     }
 }
